@@ -17,7 +17,7 @@ def home():
         img_path = os.path.join('files', filename)
         file.save(img_path)
         prediction = predict(img_path)
-        
+        os.remove(img_path)
         return prediction
 if __name__ == '__main__':
     app.run(debug=True)
