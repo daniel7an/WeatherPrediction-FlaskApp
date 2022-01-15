@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods = ['GET', 'POST'])
 def home():
     if request.method == 'GET':
-        return render_template('index.html')
+        return render_template('base.html')
     if request.method == 'POST':
         if 'file' not in request.files:
             print('file is not uploaded!')
@@ -18,6 +18,6 @@ def home():
         file.save(img_path)
         prediction = predict(img_path)
         os.remove(img_path)
-        return prediction
+        return render_template('base.html', output=prediction)
 if __name__ == '__main__':
     app.run(debug=True)
